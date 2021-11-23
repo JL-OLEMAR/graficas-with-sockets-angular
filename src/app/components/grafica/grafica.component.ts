@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { ChartDataSets } from 'chart.js'
 import { Label } from 'ng2-charts'
@@ -14,20 +15,15 @@ export class GraficaComponent implements OnInit {
 
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April']
 
-  // constructor () { }
+  constructor (private readonly http: HttpClient) { }
 
   ngOnInit (): void {
-    setInterval(() => {
-      const newData = [
-        // Numero aleatorio entre 0 y 100
-        Math.round(Math.random() * 100),
-        Math.round(Math.random() * 100),
-        Math.round(Math.random() * 100),
-        Math.round(Math.random() * 100)
-      ]
-      this.lineChartData = [
-        { data: newData, label: 'Ventas' }
-      ]
-    }, 5000)
+    this.getData()
+  }
+
+  // Mostrar datos en la gráfica desde el servidor
+  getData (): any {
+    this.http.get('http://localhost:5000/grafica')
+      .subscribe((data: any) => (this.lineChartData = data))
   }
 }
