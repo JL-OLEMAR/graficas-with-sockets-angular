@@ -6,13 +6,15 @@ import { ChartsModule } from 'ng2-charts'
 
 import { AppComponent } from './app.component'
 import { GraficaComponent } from './components/grafica/grafica.component'
+import { GraficaBarComponent } from './components/grafica-bar/grafica-bar.component'
 
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} }
 
 @NgModule({
   declarations: [
     AppComponent,
-    GraficaComponent
+    GraficaComponent,
+    GraficaBarComponent
   ],
   imports: [
     BrowserModule,
